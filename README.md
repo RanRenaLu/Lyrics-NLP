@@ -12,7 +12,9 @@ Term: Spring 2020
 + Projec title: What Can Lyrics Tell Us?
 + This project is conducted by Ran (Rena) Lu
 
-+ Project summary: [a short summary] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: Music has always been a very important part of our lives, and we can easily fall in love with songs without knowing the lyrics. However, a well-written lyric should always be adored as it is a primary tool for the listeners to connect with the songwriter. Being able to understand the words of the lyrics, we can access what is in their mind. In this project, we will focus on the genre and the time of publishing for songs to analyze the lyrics by data visualization and sentiment analysis.
+
+
 ![lyrics_img](https://github.com/TZstatsADS/Spring2020-Project1-RanRenaLu/blob/master/figs/Lyrics_2.jpg)
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
