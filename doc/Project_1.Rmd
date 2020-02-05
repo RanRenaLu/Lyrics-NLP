@@ -14,7 +14,7 @@ editor_options:
 
 \newline 
 \newline
-Music has always been a very important part of our lives, and we can easily fall in love with songs without knowing the lyrics. However, a well-written lyric should always be adored as it is a primary tool for the listeners to connect with the songwriter. Being able to understand the words of the lyrics, we can access to what is in their mind. It is so intuitive, and we do not need to be trained to read it. Then, what can lyrics tell us? In this context, we will analyze a large set of lyrics and discover some potential information through data visualization. In this report, we will narrow down to two main characterstcs: the genre and the decades when the songs were published.    
+Music has always been a very important part of our lives, and we can easily fall in love with songs without knowing the lyrics. However, a well-written lyric should always be adored as it is a primary tool for the listeners to connect with the songwriter. Being able to understand the words of the lyrics, we can access what is in their mind. It is so intuitive, and we do not need to be trained to read it. Then, what can lyrics tell us? In this context, we will analyze a large set of lyrics and discover some potential information through data visualization. In this report, we will narrow down to two main characterstics: the genre and the decades when the songs were published.    
 \newline
 \newline
 
@@ -92,7 +92,7 @@ dt_lyrics <- dt_lyrics %>% mutate(time = case_when(year < 1980 & year >= 1970 ~ 
 ```
 
 ## What do we have now?  
-Before we start, let us take a brief look at what is provided. We will mainly study the genre of the songs and the period of the time it publised. 
+Before we start, let us take a brief look at what is provided. We will mainly study the genre of the songs and the period of the time it published. 
   
 ### Song Counts
 
@@ -125,7 +125,7 @@ plot_grid(g1, g2, labels = "AUTO")
 \newline
 \newline 
   
-Notably, a large proportion of the songs came up in 2000s and most of the songs are rock music. Why is this happening? How about the proportion of the genres within each decades? A mosaic plot will provides a more detailed description. It plots the genres of the songs against the decades when they were published. According to the plot, Rock music accounts for a large proportion of the total music genre across all decades, and less R&B songs were published proportionally after the year 2000. In 1980s, lots of hip-hop music came up, marked a hip-hop era. Later, in 2010s, pop music arose, and the share of rock music keeps going down through out these years.
+Notably, a large proportion of the songs came up in the 2000s and most of the songs are rock music. Why is this happening? How about the proportion of the genres within each decade? A mosaic plot will provide a more detailed description. It plots the genres of the songs against the decades when they were published. According to the plot, Rock music accounts for a large proportion of the total music genre across all decades, and fewer R&B songs were published proportionally after the year 2000. In the 1980s, lots of hip-hop music came up, marked a hip-hop era. Later, in the 2010s, pop music arose, and the share of rock music keeps going down throughout these years.
 \newline
 ```{r echo=FALSE}
 
@@ -138,7 +138,7 @@ g3
 ## What are the keywords?
 \newline
 ### Genre
-Lyrics are combinations of words. The lyricists choose the words very carefully, as they place their hopes and thoughts in these sentenses. They are perfect mirrors for their spirit. Then, what are the keywords across all genres of the songs and did the keywords change though out the year? I count the frequency of words appeared in the lyrics with respect to our interests, and consider the most frequent word is the main topic. From previous discussion, we noticed that rock music is a major part of the song development, and let us take a lood at rock music by generating a wordcloud.   
+Lyrics are combinations of words. The lyricists choose the words very carefully, as they place their hopes and thoughts in these sentences. They are perfect mirrors for their spirit. Then, what are the keywords across all genres of the songs and did the keywords change though out the year? I count the frequency of words appeared in the lyrics with respect to our interests, and consider the most frequent word is the main topic. From the previous discussion, we noticed that rock music is a major part of the song development, and let us take a look at rock music by generating a wordcloud.   
   
 ```{r echo=FALSE}
 # # Define UI for app that draws a histogram ----
@@ -208,7 +208,7 @@ wordcloud_rock <- count(filter(word_tibble, id %in% which(dt_lyrics$genre == "Ro
 \newline
 \newline
   
-We can tell that love is a major topic in rock music, and rockers also talk about time and ill, with a lot of use of pronoun you. Rock music deals with a wide range of topics and themes. From our plot, pop music arose in 2010s, and we can take a look at how they differ from the rock music in terms of the word use.  
+We can tell that love is a major topic in rock music, and rockers also talk about time and ill, with a lot of use of the pronoun you. Rock music deals with a wide range of topics and themes. From our plot, pop music arose in the 2010s, and we can take a look at how they differ from rock music in terms of the word use.  
 \newline
 \newline
 ```{r echo=FALSE}
@@ -224,13 +224,13 @@ wordcloud_pop <- count(filter(word_tibble, id %in% which(dt_lyrics$genre == "Pop
 \newline
 \newline
   
-The topic of lyrics did not change dramatically, but pop music use baby and heart more often comparing with rock music, as pop is softer and has simpler structure.  
+The topic of lyrics did not change dramatically, but pop music uses baby and heart more often compared with rock music, as pop is softer and has a simpler structure.  
 \newline
 \newline
 
 ### Decades
   
-Music is like a infant, and it develops thourgh the years. The topic has been changing in different historic times. The 2000s is a decades for the song wave, and plentiful songs came up. What are the keywords for two-thousands? How about now?  
+Music is like an infant, and it develops through the years. The topic has been changing in different historic times. The 2000s is a decade for the song wave, and plentiful songs came up. What are the keywords for two-thousands? How about now?  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 wordcloud_2000s <- count(filter(word_tibble, id %in% which(dt_lyrics$time == "2000s")), word, sort = TRUE) %>%
@@ -264,7 +264,7 @@ We can tell that the keywords are very consistent in the 2000s and 2010s. People
 ## Sentiment Analysis
 \newline
 ### Counts
-Lyrics is a way for the lyricists to transfer their emotions. The ability of recognizing the basic emotions, like happiness and sadness is a common skill that we were born with. First, we are going to analyze the sentiments in the lyrics with NRC word-emotion lexicon. It is a collection words associated with eight emitions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (positive and negative) ("NRC Word-Emotion Association Lexicon", n.d.)  
+Lyric is a way for the lyricists to transfer their emotions. The ability of recognizing the basic emotions, like happiness and sadness is a common skill that we were born with. First, we are going to analyze the sentiments in the lyrics with the NRC word-emotion lexicon. It is a collection of words associated with eight emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (positive and negative) ("NRC Word-Emotion Association Lexicon", n.d.)  
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Getting the sentiment value for the lyrics
@@ -281,7 +281,7 @@ sentiment_counts%>% ggplot(aes(sentiments, counts, fill = counts)) + facet_wrap(
 \newline  
 \newline  
   
-This plot shows that the emotion word counts across from all genres. The darker the bar is, the more words counts this genre has. Here, all genres of songs emphasize on two sentiments. The rock music talks less about joy and disgust, as well as pop music; but hip-hop favors trust, fear, and anger. Meanwhile, pmetal shows a strong favor towards negative sentiment and fear emotion.  
+This plot shows that the emotion word counts across from all genres. The darker the bar is, the more word count this genre has. Here, all genres of songs emphasize on two sentiments. The rock music talks less about joy and disgust, as well as pop music; but hip-hop favors trust, fear, and anger. Meanwhile, metal shows a strong favor of negative sentiment and fear emotion.  
 \newline
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 sentiment_counts_time <- lyrics_sentiment %>% group_by(time) %>% summarise(anger_counts = sum(anger), anticipation_counts = sum(anticipation), disgust_counts = sum(disgust), fear_counts = sum(fear), joy_counts = sum(joy), sadness_counts = sum(sadness), surprise_counts = sum(surprise), trust_counts = sum(trust), negative_counts = sum(negative), positive_counts = sum(positive)) %>% gather(key = "sentiments", value = "counts", -time) %>% drop_na()
@@ -291,12 +291,12 @@ sentiment_counts_time%>% ggplot(aes(sentiments, counts, fill = counts)) + facet_
 \newline  
 \newline
   
-How about the sentiment counts for each different decades? There are very dark bars in 2000s, representing positive and negative sentiments, and indeed, these two sentiments are the major emotions for all time. We may notice that for different decades, the distributions of the word counts are quite similar: people prefer trust, sadness, joy, fear, anticipation, as well as anger.  
+How about the sentiment counts for each different decades? There are very dark bars in the 2000s, representing positive and negative sentiments, and indeed, these two sentiments are the major emotions for all time. We may notice that for different decades, the distributions of the word counts are quite similar: people prefer trust, sadness, joy, fear, anticipation, as well as anger.  
 \newline
   
 ### Positive and Negative Sentiments
   
-As the two sentiments appear the most, let us concentrate on these two sentiments: positive and negative. These two plots presents the value of positive counts minus negative counts, providing an overall sense of how the big emotion in the lyrics.  
+As the two sentiments appear the most, let us concentrate on these two sentiments: positive and negative. These two plots present the value of positive counts minus negative counts, providing an overall sense of how the big emotion in the lyrics.  
   
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -318,11 +318,11 @@ genre_plot <- lyrics_sentiment %>% group_by(genre) %>% mutate(sentiment = positi
 ```
 ![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/genre_plot.png)
   
-The second plot is grouped by the genres of the songs. Note that hip-hop and metal songs have strong favor for negative sentiment, while jazz shows a favor for positive sentiment. Also, electronic, folk, and rock music have cases where the lyricists expressed extreme emotions.  
+The second plot is grouped by the genres of the songs. Note that hip-hop and metal songs have strong favor for negative sentiment, while jazz shows favor for positive sentiment. Also, electronic, folk, and rock music have cases where the lyricists expressed extreme emotions.  
   
 ### Overall Sentiment Score
   
-After analyzing two sentiments, we will focus on the sentiment scores based on our interest. The sentiment score represents the overall sentiment of the lyrics, and it should be consitent with our analysis above.    
+After analyzing two sentiments, we will focus on the sentiment scores based on our interest. The sentiment score represents the overall sentiment of the lyrics, and it should be consistent with our analysis above.    
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 #aggregate the sentiment analysis by grouping variables use sentiment_by
 
@@ -343,7 +343,7 @@ out <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/outpu
 ```
 ![sentiment score plot for decades](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/out_time_plot.png)
   
-The first plot represents the sentiments score for time of publishing, and we can notice that the points spread out more in the 2000s and 2010s, which means that the songwriters used more emotional words in this period of time.     
+The first plot represents the sentiments score for the time of publishing, and we can notice that the points spread out more in the 2000s and 2010s, which means that the songwriters used more emotional words in this period of time.     
   
 ![sentiment score plot for genres](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/out_genre_plot.png)
   
@@ -353,7 +353,7 @@ The second plot represents the sentiments score for the genres. The average sent
   
 ## Conclusion  
   * In general, the keywords of the lyrics do not differ in genres and time of publishing for the songs.  
-  * Based on the sentiment analysis, people tend to use strongly emotional words after the 1990s, and they express more negative feelings in metal and hip-hop music, and more positive feelings in jazz music.  
+  * Based on the sentiment analysis, people tend to use strong emotional words after the 1990s They express more negative feelings in metal and hip-hop music and more positive feelings in jazz music.  
   
 ## Refence  
 \newline
