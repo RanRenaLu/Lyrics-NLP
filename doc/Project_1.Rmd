@@ -276,7 +276,7 @@ nrc_sentiment <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRe
 lyrics_sentiment <- cbind(dt_lyrics,nrc_sentiment) %>% select(-lyrics, -stemmedwords)
 
 sentiment_counts <- lyrics_sentiment %>% group_by(genre) %>% summarise(anger_counts = sum(anger), anticipation_counts = sum(anticipation), disgust_counts = sum(disgust), fear_counts = sum(fear), joy_counts = sum(joy), sadness_counts = sum(sadness), surprise_counts = sum(surprise), trust_counts = sum(trust), negative_counts = sum(negative), positive_counts = sum(positive)) %>% gather(key = "sentiments", value = "counts", -genre) %>% drop_na()
-sentiment_counts%>% ggplot(aes(sentiments, counts, fill = counts)) + facet_wrap(~genre) + geom_col() + coord_flip() + theme_light()
+sentiment_counts%>% ggplot(aes(sentiments, counts, fill = counts)) + facet_wrap(~genre) + geom_col() + coord_flip() + theme_light() 
 ```
 \newline  
 \newline  
