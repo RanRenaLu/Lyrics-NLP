@@ -204,7 +204,7 @@ wordcloud_rock <- count(filter(word_tibble, id %in% which(dt_lyrics$genre == "Ro
       wordcloud2(color="random-light", backgroundColor="dark", size=1, minRotation = pi/2, maxRotation = pi/2, rotateRatio = 0.5)
 
 ```
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/rock.png)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/rock.png)
 \newline
 \newline
   
@@ -327,11 +327,11 @@ After analyzing two sentiments, we will focus on the sentiment scores based on o
 #aggregate the sentiment analysis by grouping variables use sentiment_by
 
 # out <- with(dt_lyrics[!is.na(dt_lyrics$time),], sentiment_by(stemmedwords, list(genre, time)))
-# write.csv(out, file = "~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out.csv")
+# write.csv(out, file = "~/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/output/sentiment_by_out.csv")
 # out_time <- with(dt_lyrics, sentiment_by(stemmedwords, list(time)))
-# write.csv(out_time, file = "~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out_time.csv")
+# write.csv(out_time, file = "~/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/output/sentiment_by_out_time.csv")
 # out_genre <- with(dt_lyrics, sentiment_by(stemmedwords, list(genre)))
-# write.csv(out_time, file = "~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out_genre.csv")
+# write.csv(out_time, file = "~/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/output/sentiment_by_out_genre.csv")
 
 out_time <- read_csv("../output/sentiment_by_out_time.csv")
 out_genre <- read_csv("../output/sentiment_by_out_genre.csv")
