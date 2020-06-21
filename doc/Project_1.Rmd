@@ -10,7 +10,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/wordcloud-lyrics.jpg)  
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/wordcloud-lyrics.jpg)  
 
 \newline 
 \newline
@@ -72,9 +72,9 @@ library(cowplot)
 # Load the preprocessed data  
 # We use the preprocessed data and artist information for our analysis.  
 # load lyrics data
-load("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/processed_lyrics.RData") 
+load("../output/processed_lyrics.RData") 
 # load artist information
-dt_artist <- fread("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/data/artists.csv") 
+dt_artist <- fread("../data/artists.csv") 
 
 lyrics_list <- c("Folk", "R&B", "Electronic", "Jazz", "Indie", "Country", "Rock", "Metal", "Pop", "Hip-Hop", "Other")
 time_list <- c("1970s", "1980s", "1990s", "2000s", "2010s")
@@ -220,7 +220,7 @@ wordcloud_pop <- count(filter(word_tibble, id %in% which(dt_lyrics$genre == "Pop
       wordcloud2(color="random-light", backgroundColor="dark", size=1, minRotation = pi/2, maxRotation = pi/2, rotateRatio = 0.5)
 
 ```
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/pop.png)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/pop.png)
 \newline
 \newline
   
@@ -237,7 +237,7 @@ wordcloud_2000s <- count(filter(word_tibble, id %in% which(dt_lyrics$time == "20
       slice(1:80) %>%
       wordcloud2(color="random-light", backgroundColor="dark", size=1, minRotation = pi/2, maxRotation = pi/2, rotateRatio = 0.5)
 ```
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/2000s.png)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/2000s.png)
 > 2000s  
  
 \newline
@@ -249,7 +249,7 @@ wordcloud_2010s <- count(filter(word_tibble, id %in% which(dt_lyrics$time == "20
       wordcloud2(color="random-light", backgroundColor="dark", size=1, minRotation = pi/2, maxRotation = pi/2, rotateRatio = 0.5)
 
 ```
-![2010s](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/2010s.png)
+![2010s](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/2010s.png)
 > 2010s  
 
 \newline
@@ -269,8 +269,8 @@ Lyric is a way for the lyricists to transfer their emotions. The ability of reco
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Getting the sentiment value for the lyrics
 # nrc_sentiment <- get_nrc_sentiment(dt_lyrics$stemmedwords)
-# write.csv(nrc_sentiment,"~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/nrc_sentiment.csv")
-nrc_sentiment <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/nrc_sentiment.csv")
+# write.csv(nrc_sentiment,"../output/nrc_sentiment.csv")
+nrc_sentiment <- read_csv("../output/nrc_sentiment.csv")
 
 # word.count <- word_count(dt_lyrics$stemmedwords)
 lyrics_sentiment <- cbind(dt_lyrics,nrc_sentiment) %>% select(-lyrics, -stemmedwords)
@@ -305,7 +305,7 @@ time_plot <- lyrics_sentiment[] %>% group_by(time) %>% mutate(sentiment = positi
   facet_wrap(~ time, ncol = 2, scales = "free_x") + ylim(-80,50) + theme_light() + 
   theme(axis.text.x = element_blank(), axis.title = element_blank(), panel.grid = element_blank())
 ```
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/time_plot.png)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/time_plot.png)
   
 The first plot is grouped by the time of publishing. The sentiments were very flat before the 1990s, and after the 1990s, people will use strong emotion words to express their thoughts.
   
@@ -316,7 +316,7 @@ genre_plot <- lyrics_sentiment %>% group_by(genre) %>% mutate(sentiment = positi
   facet_wrap(~ genre, ncol = 3, scales = "free_x") + ylim(-80,50) + theme_light() + 
   theme(axis.text.x = element_blank(), axis.title = element_blank(), panel.grid = element_blank())
 ```
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/genre_plot.png)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/genre_plot.png)
   
 The second plot is grouped by the genres of the songs. Note that hip-hop and metal songs have strong favor for negative sentiment, while jazz shows favor for positive sentiment. Also, electronic, folk, and rock music have cases where the lyricists expressed extreme emotions.  
   
@@ -333,23 +333,23 @@ After analyzing two sentiments, we will focus on the sentiment scores based on o
 # out_genre <- with(dt_lyrics, sentiment_by(stemmedwords, list(genre)))
 # write.csv(out_time, file = "~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out_genre.csv")
 
-out_time <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out_time.csv")
-out_genre <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out_genre.csv")
-out <- read_csv("~/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/output/sentiment_by_out.csv")
+out_time <- read_csv("../output/sentiment_by_out_time.csv")
+out_genre <- read_csv("../output/sentiment_by_out_genre.csv")
+out <- read_csv("../output/sentiment_by_out.csv")
 # To properly run the plots, need to used the with sentiment_by output, reimporting the data will not work.
 # plot(out)
 # plot(out_genre)
 # plot(out_time)
 ```
-![sentiment score plot for decades](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/out_time_plot.png)
+![sentiment score plot for decades](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/out_time_plot.png)
   
 The first plot represents the sentiments score for the time of publishing, and we can notice that the points spread out more in the 2000s and 2010s, which means that the songwriters used more emotional words in this period of time.     
   
-![sentiment score plot for genres](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/out_genre_plot.png)
+![sentiment score plot for genres](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/out_genre_plot.png)
   
 The second plot represents the sentiments score for the genres. The average sentiment scores (red dot) tend to be negative for hip-hop and metal and positive for jazz, which, again, match our analysis above.  
   
-![](/Users/ran_lu/Documents/Columbia/GR5243/Spring2020-Project1-RanRenaLu/figs/Lyrics.jpg)
+![](/Users/ran_lu/Documents/Documents - Ran’s MacBook Pro/GitHub/Lyrics-NLP/figs/Lyrics.jpg)
   
 ## Conclusion  
   * In general, the keywords of the lyrics do not differ in genres and time of publishing for the songs.  
